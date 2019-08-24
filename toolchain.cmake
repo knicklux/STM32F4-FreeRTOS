@@ -1,0 +1,25 @@
+include(CMakeForceCompiler)
+
+set(CMAKE_SYSTEM_NAME Generic)
+set(CMAKE_SYSTEM_PROCESSOR arm)
+set(CMAKE_CROSS_COMPILING 1)
+
+CMAKE_FORCE_C_COMPILER(arm-none-eabi-gcc GNU)
+CMAKE_FORCE_CXX_COMPILER(arm-none-eabi-g++ GNU)
+#CMAKE_FORCE_AS_COMPILER(arm-none-eabi-as GNU)
+#set(CMAKE_C_COMPILER "arm-none-eabi-gcc" CACHE PATH "cc" FORCE)
+#set(CMAKE_CXX_COMPILER "arm-none-eabi-g++" CACHE PATH "cxx" FORCE)
+set(CMAKE_ASM_COMPILER "arm-none-eabi-as" CACHE PATH "as" FORCE)
+
+set(CMAKE_AR           "arm-none-eabi-ar"      CACHE PATH "ar"      FORCE)
+set(CMAKE_LINKER           "arm-none-eabi-ld"      CACHE PATH "ld"      FORCE)
+set(CMAKE_NM           "arm-none-eabi-nm"      CACHE PATH "nm"      FORCE)
+set(CMAKE_OBJCOPY           "arm-none-eabi-objcopy"      CACHE PATH "objcopy"      FORCE)
+set(CMAKE_OBJDUMP           "arm-none-eabi-objdump"      CACHE PATH "objdump"      FORCE)
+set(CMAKE_STRIP           "arm-none-eabi-strip"      CACHE PATH "strip"      FORCE)
+set(CMAKE_STRIP           "arm-none-eabi-ranlib"      CACHE PATH "ranlib"      FORCE)
+
+set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
+set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE ONLY)
