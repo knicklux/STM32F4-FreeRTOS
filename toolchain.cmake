@@ -36,7 +36,7 @@ SET(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
 set(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE ONLY)
   
 SET(MCU cortex-m4)
-set(CDEFS "-DUSE_STDPERIPH_DRIVER -DSTM32F4XX -DSTM32F40_41xxx -DHSE_VALUE=8000000 -D__FPU_PRESENT=1 -D__FPU_USED=1 -DARM_MATH_CM4")
+set(CDEFS "-DUSE_STDPERIPH_DRIVER -DSTM32F40XX -DSTM32F40_41xxx -DHSE_VALUE=8000000 -D__FPU_PRESENT=1 -D__FPU_USED=1 -DARM_MATH_CM4")
 SET(MCFLAGS "-mcpu=${MCU} -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -fsingle-precision-constant -finline-functions -Wdouble-promotion")  
 SET(CMAKE_ASM_FLAGS "")  
 SET(CMAKE_C_FLAGS "${MCFLAGS} ${CDEFS} -ffunction-sections -std=gnu99 -fdata-sections -Wall")  
