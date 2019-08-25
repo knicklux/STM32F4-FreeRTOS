@@ -29,7 +29,19 @@ Grab the official utility from [ST website](http://www.st.com/web/catalog/tools/
 #### Linux and OS X
 Clone this [git](https://github.com/texane/stlink), follow the instructions on that page and install st-util to your system.
 
-### Compile this example
+### Modern CMake Compile Instructions
+
+`$ mkdir build`
+
+`$ cd build`
+
+`$ cmake -DCMAKE_TOOLCHAIN_FILE="../toolchain.cmake" ..`
+
+`$ make`
+
+`$ st-flash write binary/FreeRTOS.bin 0x8000000`
+
+### Legacy Compile Instructions
 The only thing you need to do is to edit the makefile and let it know your toolchain installation path. Change the `TOOLCHARN_ROOT` variable at the third line of makefile and point it to where you installed the toolchain. The you can simply type `make` and compile the example.
 
 ### Debug
