@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.0)
 
+INCLUDE(toolchain.cmake)
+
 project(stm32f4-freertos-exec C CXX ASM)
 
 ENABLE_LANGUAGE(ASM)
