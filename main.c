@@ -12,10 +12,14 @@
 
 StackType_t fpuTaskStack[FPU_TASK_STACK_SIZE] CCM_RAM;  // Put task stack in CCM
 StaticTask_t fpuTaskBuffer CCM_RAM;  // Put TCB in CCM
+StackType_t ledTaskStack[FPU_TASK_STACK_SIZE] CCM_RAM;  // Put task stack in CCM
+StaticTask_t ledTaskBuffer CCM_RAM;  // Put TCB in CCM
 
 void init_USART3(void);
 
 void test_FPU_test(void* p);
+
+void blink_LED(void *p);
 
 int main(void) {
   SystemInit();
@@ -26,6 +30,7 @@ int main(void) {
   // Stack and TCB are placed in CCM of STM32F4
   // The CCM block is connected directly to the core, which leads to zero wait states
   xTaskCreateStatic(test_FPU_test, "FPU", FPU_TASK_STACK_SIZE, NULL, 1, fpuTaskStack, &fpuTaskBuffer);
+  xTaskCreateStatic(blink_LED, "LED", FPU_TASK_STACK_SIZE, NULL, 1, ledTaskStack, &ledTaskBuffer);
 
   printf("System Started!\n");
   vTaskStartScheduler();  // should never return
@@ -111,8 +116,33 @@ void test_FPU_test(void* p) {
   for (;;) {
     float s = sinf(ff);
     ff += s;
-    // TODO some other test
 
+    vTaskDelay(1000);
+  }
+
+  vTaskDelete(NULL);
+}
+
+void blink_LED(void *p) { float ff = 1.0f;
+  printf("Blink LED task.\n");
+  
+  //Enable the GPIOD Clock
+  RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD,ENABLE);
+  
+  // GPIOD Configuration
+  GPIO_InitTypeDef GPIO_InitStruct;
+  GPIO_InitStruct.GPIO_Pin = GPIO_Pin_15;
+  GPIO_InitStruct.GPIO_Mode = GPIO_Mode_OUT;
+  GPIO_InitStruct.GPIO_Speed = GPIO_Speed_50MHz;
+  GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
+  GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_UP;
+  
+   GPIO_Init(GPIOD, &GPIO_InitStruct);
+  
+  for (;;) {
+    GPIO_SetBits(GPIOD, GPIO_Pin_15);
+    vTaskDelay(1000);
+    GPIO_ResetBits(GPIOD, GPIO_Pin_15);
     vTaskDelay(1000);
   }
 
