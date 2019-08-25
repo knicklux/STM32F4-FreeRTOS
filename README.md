@@ -35,7 +35,7 @@ Clone this [git](https://github.com/texane/stlink), follow the instructions on t
 
 `$ cd build`
 
-`$ cmake -DCMAKE_TOOLCHAIN_FILE="../toolchain.cmake" ..`
+`$ cmake ..`
 
 `$ make`
 
