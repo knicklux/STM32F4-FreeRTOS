@@ -53,7 +53,7 @@ SET(CMAKE_ASM_FLAGS_RELEASE "")
 # Uncomment if you want to do profiling with gprof
 # SET(CMAKE_CXX_FLAGS "-pg")
   
-SET(CMAKE_EXE_LINKER_FLAGS "${MCFLAGS} -T${LDSCRIPT} -Wl,-Map=${CMAKE_PROJECT_NAME}.map,--cref,--no-warn-mismatch -Wl,--gc-sections -Wl,--defsym=malloc_getpagesize_P=0x1000 -specs=nosys.specs")  
+SET(CMAKE_EXE_LINKER_FLAGS "${MCFLAGS} -T${LDSCRIPT} -Wl,-Map,${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}.map,--cref,--no-warn-mismatch,--gc-sections,--defsym=malloc_getpagesize_P=0x1000 -specs=nosys.specs")  
 SET(CMAKE_MODULE_LINKER_FLAGS "")  
 SET(CMAKE_SHARED_LINKER_FLAGS "")
 
