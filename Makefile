@@ -10,7 +10,7 @@ DBG:=-g
 
 FREERTOS:=$(CURDIR)/FreeRTOS
 STARTUP:=$(CURDIR)/hardware
-LINKER_SCRIPT:=$(CURDIR)/Utilities/stm32_flash.ld
+LINKER_SCRIPT:=$(CURDIR)/Link/stm32_flash.ld
 
 INCLUDE=-I$(CURDIR)/hardware
 INCLUDE+=-I$(FREERTOS)/include
