@@ -123,7 +123,7 @@ void test_FPU_test(void* p) {
   vTaskDelete(NULL);
 }
 
-void blink_LED(void *p) { float ff = 1.0f;
+void blink_LED(void *p) {
   printf("Blink LED task.\n");
   
   //Enable the GPIOD Clock
@@ -141,9 +141,9 @@ void blink_LED(void *p) { float ff = 1.0f;
   
   for (;;) {
     GPIO_SetBits(GPIOD, GPIO_Pin_15);
-    vTaskDelay(1000);
+    vTaskDelay(1000 / portTICK_PERIOD_MS);
     GPIO_ResetBits(GPIOD, GPIO_Pin_15);
-    vTaskDelay(1000);
+    vTaskDelay(1000 / portTICK_PERIOD_MS);
   }
 
   vTaskDelete(NULL);
