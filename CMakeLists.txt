@@ -101,11 +101,14 @@ add_library(FreeRTOS
   FreeRTOS/timers.c
   FreeRTOS/portable/GCC/ARM_CM4F/port.c
   FreeRTOS/portable/MemMang/heap_4.c
+  Libraries/defaultInit/src/default_init.c
+  #Libraries/defaultInit/src/hooks.c
 )
 target_include_directories(FreeRTOS PUBLIC
   $<BUILD_INTERFACE:
     ${CMAKE_CURRENT_SOURCE_DIR}/FreeRTOS/include
-    ${CMAKE_CURRENT_SOURCE_DIR}/FreeRTOS/portable/GCC/ARM_CM4F>
+    ${CMAKE_CURRENT_SOURCE_DIR}/FreeRTOS/portable/GCC/ARM_CM4F
+    ${CMAKE_CURRENT_SOURCE_DIR}/Libraries/defaultInit/include>
   $<INSTALL_INTERFACE:include>
 )
 target_link_libraries(FreeRTOS
