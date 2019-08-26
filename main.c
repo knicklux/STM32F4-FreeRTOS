@@ -48,18 +48,45 @@ void blink_LED(void *p) {
   
   // GPIOD Configuration
   GPIO_InitTypeDef GPIO_InitStruct;
+  GPIO_InitStruct.GPIO_Pin = GPIO_Pin_12;
+  GPIO_InitStruct.GPIO_Mode = GPIO_Mode_OUT;
+  GPIO_InitStruct.GPIO_Speed = GPIO_Speed_50MHz;
+  GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
+  GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_UP;
+  GPIO_Init(GPIOD, &GPIO_InitStruct);
+  GPIO_InitStruct.GPIO_Pin = GPIO_Pin_13;
+  GPIO_InitStruct.GPIO_Mode = GPIO_Mode_OUT;
+  GPIO_InitStruct.GPIO_Speed = GPIO_Speed_50MHz;
+  GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
+  GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_UP;
+  GPIO_Init(GPIOD, &GPIO_InitStruct);
+  GPIO_InitStruct.GPIO_Pin = GPIO_Pin_14;
+  GPIO_InitStruct.GPIO_Mode = GPIO_Mode_OUT;
+  GPIO_InitStruct.GPIO_Speed = GPIO_Speed_50MHz;
+  GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
+  GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_UP;
+  GPIO_Init(GPIOD, &GPIO_InitStruct);
   GPIO_InitStruct.GPIO_Pin = GPIO_Pin_15;
   GPIO_InitStruct.GPIO_Mode = GPIO_Mode_OUT;
   GPIO_InitStruct.GPIO_Speed = GPIO_Speed_50MHz;
   GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
   GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_UP;
+  GPIO_Init(GPIOD, &GPIO_InitStruct);
   
-   GPIO_Init(GPIOD, &GPIO_InitStruct);
-  
+  GPIO_SetBits(GPIOD, GPIO_Pin_12);
+  vTaskDelay(1000 / portTICK_PERIOD_MS);
   for (;;) {
+    GPIO_ResetBits(GPIOD, GPIO_Pin_12);
+    GPIO_SetBits(GPIOD, GPIO_Pin_13);
+    vTaskDelay(1000 / portTICK_PERIOD_MS);
+    GPIO_ResetBits(GPIOD, GPIO_Pin_13);
+    GPIO_SetBits(GPIOD, GPIO_Pin_14);
+    vTaskDelay(1000 / portTICK_PERIOD_MS);
+    GPIO_ResetBits(GPIOD, GPIO_Pin_14);
     GPIO_SetBits(GPIOD, GPIO_Pin_15);
     vTaskDelay(1000 / portTICK_PERIOD_MS);
     GPIO_ResetBits(GPIOD, GPIO_Pin_15);
+    GPIO_SetBits(GPIOD, GPIO_Pin_12);
     vTaskDelay(1000 / portTICK_PERIOD_MS);
   }
 
