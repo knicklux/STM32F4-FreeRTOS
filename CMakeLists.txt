@@ -17,7 +17,7 @@ endfunction(add_bin_from_elf)
 #target_link_libraries(button.elf m c gcc)
 #add_bin_from_elf(button.bin button.elf)
 
-#set_source_files_properties(hardware/startup_stm32f4xx.s PROPERTIES COMPILE_FLAGS "-x assembler-with-cpp")
+set_source_files_properties(hardware/startup_stm32f4xx.s PROPERTIES COMPILE_FLAGS "-x assembler-with-cpp")
 
 add_library(hardware
   hardware/startup_stm32f4xx.s
