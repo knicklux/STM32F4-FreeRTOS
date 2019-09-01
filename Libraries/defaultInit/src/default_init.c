@@ -9,7 +9,7 @@ void setupAll(void) {
   SystemInit();
   NVIC_PriorityGroupConfig(NVIC_PriorityGroup_4);
   init_USART3();
-  printf("FreeRTOS bootup finished.\n");
+  printf("\rFreeRTOS bootup finished.\r\n");
 }
 
 /*

@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.0)
 
 SET(PROJECT_NAME stm32f4-freertos-exec)
 
+INCLUDE(toolchain.cmake)
+
 project(${PROJECT_NAME} C CXX ASM)
 
 ENABLE_LANGUAGE(ASM)
@@ -23,7 +25,6 @@ add_library(hardware
   hardware/startup_stm32f4xx.s
   hardware/stm32f4xx_it.c
   hardware/system_stm32f4xx.c
-  Libraries/syscall/syscalls.c
 )
 target_include_directories(hardware PUBLIC
   $<BUILD_INTERFACE:
@@ -116,5 +117,9 @@ target_link_libraries(FreeRTOS
 )
 
 add_executable(${CMAKE_PROJECT_NAME}.elf main.c)
+target_include_directories(${CMAKE_PROJECT_NAME}.elf PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Libraries/syscall>
+  $<INSTALL_INTERFACE:include>
+)
 target_link_libraries(${CMAKE_PROJECT_NAME}.elf FreeRTOS)
 add_bin_from_elf(${CMAKE_PROJECT_NAME}.bin ${CMAKE_PROJECT_NAME}.elf)

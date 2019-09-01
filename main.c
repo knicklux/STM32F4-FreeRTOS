@@ -2,6 +2,7 @@
 #include "FreeRTOS.h"
 #include "task.h"
 #include "FreeRTOS_initializations.h"
+#include "syscalls.c"
 
 void test_FPU_test(void* p);
 
@@ -29,7 +30,8 @@ int main(void) {
 
 void test_FPU_test(void* p) {
   float ff = 1.0f;
-  printf("Start FPU test task.\n");
+  vTaskDelay(1000 / portTICK_PERIOD_MS);
+  printf("Start FPU test task.\r\n");
   for (;;) {
     float s = sinf(ff);
     ff += s;
@@ -41,7 +43,7 @@ void test_FPU_test(void* p) {
 }
 
 void blink_LED(void *p) {
-  printf("Blink LED task.\n");
+  printf("Blink LED task.\r\n");
   
   //Enable the GPIOD Clock
   RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD,ENABLE);
